@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+const int MAX_TEMPLATES_COUNT = 10000; // максимальное число комбинаций
+const int STR_SIZE = 20; // размер строки шаблона
+
+// проверка, что вся строка состоит из цифр
+int is_digits_str(char *s) {
+	for (int i = 0; s[i]; i++)
+		if (s[i] < '0' || s[i] > '9')
+			return 0;
+
+	return 1;
+}
+
+void generate_templates(char *template, char *str, int index, char templates[MAX_TEMPLATES_COUNT][STR_SIZE], int *size) {
+	if (!strlen(template)) { // если шаблон пустой (или закончися)
+		strcpy(templates[*size], str);
+		*size = *size + 1;
+
+		return; // то выходим
+	}
+
+	int buttons[26] = { 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 9, 9, 9, 9 }; // перевод символов в номера кнопок
+	int button = template[0] - '0'; // получаем номер кнопки
+
+	for (int i = 0; i < 26; i++) {
+		if (buttons[i] == button) {
+			str[index] = 'a' + i;
+			generate_templates(template + 1, str, index + 1, templates, size);
+
+		}
+	}
+	
+	str[index] = '0' + button;
+	generate_templates(template + 1, str, index + 1, templates, size);
+}
+
+int main(int argc, char* argv[]){
+	char *template = argv[1]; // числовая строка
+
+	if (!is_digits_str(template)) {
+		printf("Str is not only digit\n");
+		return -1;
+	}
+
+	char templates[MAX_TEMPLATES_COUNT][STR_SIZE]; // комбинации
+	char str[STR_SIZE];
+	int size = 0; // количество комбинаций
+
+	generate_templates(template, str, 0, templates, &size);
+
+	for (int i = 0; i < size; i++) {
+		printf("%d. %s\n", i + 1, templates[i]);
+	}
+	return 0;
+}
