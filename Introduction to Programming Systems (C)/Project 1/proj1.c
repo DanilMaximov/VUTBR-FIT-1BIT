@@ -1,8 +1,24 @@
-/* The aim of the project is to create a program that emulates 
-a simplified algorithm for searching contacts entered using 
-a sequence of digits. The program input is a sequence of digits. 
-The output of the program will contain a list of contacts 
-that match the specified numeric filter. */
+/* The aim of the project is to create a program that emulates
+a simplified algorithm for searching contacts entered using
+a sequence of digits. The program input is a sequence of digits.
+The output of the program will contain a list of contacts
+that match the specified numeric filter.
+
+
+$ ./proj1 <contacts.txt
+petr dvorak, 603123456
+jana novotna, 777987654
+bedrich smetana ml., 541141120
+
+$ ./proj1 12 <contacts.txt
+petr dvorak, 603123456
+bedrich smetana ml., 541141120
+
+$ ./proj1 686 <seznam.txt
+jana nOVOtna, 777987654
+(OVO only for demonstration)
+
+*/
 
 /******************************************************/
 /* * *                  Project #1                * * */
@@ -21,7 +37,7 @@ that match the specified numeric filter. */
 
 #define SIZE 100 // task condition for string size
 #define MAX_TEMPLATES_COUNT 10000 // max number of combinations for name searching
-#define STR_SIZE 20  // max string size for searching 
+#define STR_SIZE 20  // max string size for searching
 
 typedef struct contact{
   char name[SIZE];
@@ -67,16 +83,16 @@ int check_KMP(char obr[], char str[]){
 // function generate keybord like in smartphones and then
 // generate all avalible combinations of letters
 void generate_templates(char *template, char *str, int index, char templates[MAX_TEMPLATES_COUNT][STR_SIZE], int *size) {
-	if (!strlen(template)) { 
+	if (!strlen(template)) {
 		strcpy(templates[*size], str);
 		*size = *size + 1;
 
-		return; 
+		return;
 	}
 
-	int buttons[26] = { 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 9, 9, 9, 9 }; 
+	int buttons[26] = { 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 9, 9, 9, 9 };
 
-	int button = template[0] - '0'; 
+	int button = template[0] - '0';
 
 	for (int i = 0; i < 26; i++) {
 		if (buttons[i] == button) {
@@ -129,7 +145,7 @@ int input_check(char argv[]){
 
 void printf_result(char *argv[], list contact[], int counter_for_name, int counter_for_number){
 
-  int not_found_trigger = 0; 
+  int not_found_trigger = 0;
 
    for(int i = 0; i < counter_for_number; i++){
    contact[i].number_mathes = check_KMP(argv[1], contact[i].number);

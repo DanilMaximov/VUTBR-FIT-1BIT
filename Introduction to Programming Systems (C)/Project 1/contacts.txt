@@ -1,3 +1,6 @@
-Name Surname, 123456789
-Steve Jobs, 18569246
-John Johnson, 56896312
+Petr Dvorak
+603123456
+Jana Novotna
+777987654
+Bedrich Smetana ml.
+541141120
