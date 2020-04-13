@@ -28,5 +28,6 @@ jana nOVOtna, 777987654
 (OVO only for demonstration)
 
 
-Task condition for compiling:
+Task condition for compiling: ```bash
 gcc -std=c99 -Wall -Wextra -Werror proj1.c -o proj1
+```
