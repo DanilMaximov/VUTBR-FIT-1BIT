@@ -8,7 +8,7 @@ voltage of the diode corresponding to the specified accuracy. Next,
 write a program that, based on these input parameters, outputs the
 duty point of the diode, ie voltage and current.
 
-![Volt-ampere diode characteristic in series with resistor](/Vadiody.png)
+![Volt-ampere diode characteristic in series with resistor](https://i.imgur.com/jer1etv.png)
 ```bash
 $ ./proj2 U0 R EPS
 ```
