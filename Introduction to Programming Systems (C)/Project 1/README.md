@@ -12,11 +12,13 @@ bedrich smetana ml., 541141120
 
 
 $ ./proj1 12 <contacts.txt
+
 petr dvorak, 603123456
 bedrich smetana ml., 541141120
 
 
 $ ./proj1 686 <seznam.txt
+
 jana nOVOtna, 777987654
 (OVO only for demonstration)
 
